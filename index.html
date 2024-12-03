@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@latest/fonts/remixicon.css" rel="stylesheet">
+
+    <title>Document</title>
+
+</head>
+<style>
+
+    *{
+        margin: 0%;
+        padding: 0%;
+        
+        
+    }
+    .mode{
+        color: black;
+    }
+    
+    button {
+        border-radius: 50%;
+        background-color:rgb(23, 210, 243);
+        width: 20%;
+        height: 20%;
+        font-weight: bold;
+    }
+    .Number:hover{
+        background-color: rgb(210, 21, 21);
+        color: black;
+    }
+    .main{
+        width: 100%;
+        height:100%;
+    
+        display: flex;
+    
+        align-items: center;
+        flex-direction: column;
+        margin-top: 15%;    
+    }
+    @media ( min-width:768px){
+           .media {
+            max-width: none;
+            background-color:rgb(8, 66, 52);
+            width: 60%;
+    
+        }
+    }
+    @media (max-width:767px){
+        .media{
+            background-color:blue;
+            color: rgb(255, 0, 43);
+            body{
+                color: white;
+            }
+            
+        }
+    }
+    .main {
+    width: 100%;
+    height: 100vh; /* Ensure full viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0; /* Remove margin-top if centering is an issue */
+}
+
+    
+
+    
+</style>
+<body class="light">
+    
+<div class="media  main flex flex-col justify-center items-end mt-20">
+        <div class="flex gap-12 ">
+
+            <div><button class=" mode text-3xl text-white"><b><i class="ri-contrast-2-line"></i></b></button></div>
+            <div class=" mode text-3xl" ><b>calculator</b></div>
+        </div>
+    <div><input type="text" id="display" class="bg-blue-300 w-64 h-20 p-5 rounded-3xl" ></input></div>
+
+
+
+    <div class="flex flex-col gap-5 p-5 w-64">
+        <div class=" flex flex-row gap-5" >
+            <button onclick="clearDisplay()" class="bg-orange-400 h-10 w-10 rounded-full text-black font-bold">AC</button>
+            <button  onclick="appendNumber('%')" class="bg-orange-400 h-10 w-10 rounded-full  text-black font-bold">%</button>
+            <button onclick="appendNumber('+')"class="bg-orange-400 h-10 w-10 rounded-full  text-black font-bold">+</button>
+            <button  onclick="appendNumber('-')"class="bg-orange-400 h-10 w-10 rounded-full  text-black font-bold">-</button>
+        </div>
+        <div class="  flex flex-row gap-5" >
+            <button  onclick="appendNumber(7)" class="Number bg-blue-300 h-10 w-10 rounded-full text-white font-bold">7</button>
+            <button  onclick="appendNumber(8)"class="Number bg-blue-300 h-10 w-10 rounded-full text-white font-bold">8</button>
+            <button onclick="appendNumber(9)"class="Number bg-blue-300 h-10 w-10 rounded-full text-white font-bold">9</button>
+            <button  onclick="appendNumber('*')"class=" bg-orange-400 h-10 w-10 rounded-full text-black font-bold">x</button>
+        </div>
+        <div class=" flex flex-row gap-5" >
+            <button onclick="appendNumber(4)"class="Number bg-blue-300 h-10 w-10 rounded-full text-white font-bold">4</button>
+            <button  onclick="appendNumber(5)"class="Number bg-blue-300 h-10 w-10 rounded-full text-white font-bold">5</button>
+            <button  onclick="appendNumber(6)"class="Number bg-blue-300 h-10 w-10 rounded-full text-white font-bold">6</button>
+            <button  onclick="appendNumber('/')"class=" bg-orange-400 h-10 w-10 rounded-full text-black font-bold">/</button>
+        </div>
+        <div class= " flex flex-row gap-5" >
+            <button  onclick="appendNumber(1)"class="Number bg-blue-300 h-10 w-10 rounded-full text-white font-bold">1</button> 
+            <button  onclick="appendNumber(2)"class="Number bg-blue-300 h-10 w-10 rounded-full text-white font-bold">2</button>
+            <button onclick="appendNumber(3)"class="Number bg-blue-300 h-10 w-10 rounded-full text-white font-bold ">3</button>
+            <button  onclick="remove()"class=" bg-orange-400 h-10 w-10 rounded-full text-black font-bold">Del</button>
+          
+        </div>
+        <div class=" flex flex-row gap-5" >       
+            <button   onclick="appendNumber('00')"class="Number bg-blue-300 h-10 w-10 rounded-full text-white font-bold">00</button>
+            <button  onclick="appendNumber(0)"class="Number bg-blue-300 h-10 w-10 rounded-full text-white font-bold">0</button>
+            <button  onclick="appendNumber('.')"class="Number bg-blue-300 h-10 w-10 rounded-full text-white font-bold">.</button>
+       
+            <button onclick="calculate()"class=" bg-orange-400 h-10 w-10 rounded-full text-black font-bold">=</button>
+        
+        </div>
+       
+    </div> 
+        
+
+
+    
+    </div>
+</div>
+    <!-- <script>
+
+
+         let display = document.getElementById("display");
+        let expression = "";
+
+        function clearDisplay() {
+            expression = "";
+            display.value = "";
+        }
+
+        function calculate() {
+            try {
+                let result = eval(expression);
+                display.value = result;
+                expression = result.toString();
+            } catch (error) {
+                display.value = "Error";
+            }
+        }
+
+        function appendNumber(number) {
+            expression += number;
+            display.value = expression;
+        }
+        function remove(){
+            expression=expression.slice(0,-1 );
+            display.value=expression
+        }
+        // body=document.querySelector("body")
+        // function getrandomcolor(){
+        //     let red=Math.floor(Math.random()*255);
+        //     let green=Math.floor(Math.random()*255);
+        //     let blue=Math.floor(Math.random()*255);
+        // return `rgb(${red},${green},${blue})`;
+        // }
+        // document.body.addEventListener("click",()=>{
+            
+        
+            // body.style.backgroundColor=getrandomcolor();
+            // body.style.backgroundColor="hidden";
+        // })
+        // id=setInterval(()=>{
+        //     body.style.backgroundColor=getrandomcolor();},2000);
+        // setTimeout((()=>{
+        //     clearInterval(id);
+        // }),20000) 
+    
+    const mode=document.querySelectorAll('.mode')
+    const Number=document.querySelectorAll('.Number')
+    mode.addEventListener("click",()=>{
+     let body=document.body
+     if (body.classList.contains('light')){
+        body.style.backgroundColor="black";
+        mode.style.color="white";
+             Number.forEach(button =>{
+                    button.style.backgroundColor="white";
+                    button.style.color="black";
+            })
+       mode.forEach(div=>{
+             div.style.color="black";
+        })
+       mode.forEach(button=>{
+             button.style.color="black";
+       })
+
+    
+        body.classList.remove('light');
+        body.classList.add('dark');
+     }
+     else if 
+
+        
+     (body.classList.contains('dark')){
+            body.style.backgroundColor="white"
+            Number.forEach(button =>{
+                button.style.backgroundColor="black";
+                button.style.color="white";
+            })
+            mode.forEach(div=>{
+              div.style.color="white";
+            })
+            mode.forEach(button=>{
+              button.style.color="white";
+            })
+            body.classList.remove('dark')
+            body.classList.add('light')
+    }
+        
+          
+    
+    }) -->
+    <script>
+        let display = document.getElementById("display");
+        let expression = "";
+    
+        function clearDisplay() {
+            expression = "";
+            display.value = "";
+        }
+    
+        function calculate() {
+            try {
+                let result = eval(expression);
+                display.value = result;
+                expression = result.toString();
+            } catch (error) {
+                display.value = "Error";
+            }
+        }
+    
+        function appendNumber(number) {
+            expression += number;
+            display.value = expression;
+        }
+    
+        function remove() {
+            expression = expression.slice(0, -1);
+            display.value = expression;
+        }
+    
+        const mode = document.querySelectorAll('.mode');
+        const Number = document.querySelectorAll('.Number'); 
+    
+        mode.forEach(button => { 
+            button.addEventListener("click", () => {
+                let body = document.body;
+    
+                if (body.classList.contains('light')) {
+                
+                    body.style.backgroundColor = "black";
+                    mode.forEach(div => div.style.color = "white");
+                    Number.forEach(button => {
+                        button.style.backgroundColor = "white";
+                        button.style.color = "black";
+                    });
+                    body.classList.remove('light');
+                    body.classList.add('dark');
+                } else {
+    
+                    body.style.backgroundColor = "white";
+                    mode.forEach(div => div.style.color = "black");
+                    Number.forEach(button => {
+                        button.style.backgroundColor = "black";
+                        button.style.color = "white";
+                    });
+                    body.classList.remove('dark');
+                    body.classList.add('light');
+                }
+            });
+        });
+    </script>
+    
+     
+    
+
+
+       
+    
+         
+
+
+       
+
+</body>
+</html> 
